@@ -9,26 +9,31 @@ interface StatusBadgeProps {
 export default function StatusBadge({ connected }: StatusBadgeProps) {
   return (
     <div
-      className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-500 ${
         connected
-          ? 'bg-success/10 text-success border border-success/20'
-          : 'bg-danger/10 text-danger border border-danger/20'
+          ? 'bg-emerald-500/[0.08] text-emerald-400 border border-emerald-500/20 shadow-glow-success'
+          : 'bg-red-500/[0.08] text-red-400 border border-red-500/20 shadow-glow-danger'
       }`}
     >
-      <span
-        className={`status-dot ${
-          connected ? 'status-dot-connected' : 'status-dot-disconnected'
-        }`}
-      />
+      <span className="relative flex h-2 w-2">
+        {connected && (
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-40" />
+        )}
+        <span
+          className={`relative inline-flex rounded-full h-2 w-2 ${
+            connected ? 'bg-emerald-400' : 'bg-red-400'
+          }`}
+        />
+      </span>
       {connected ? (
         <>
           <Wifi size={12} />
-          <span>Connected</span>
+          <span>Live</span>
         </>
       ) : (
         <>
           <WifiOff size={12} />
-          <span>Disconnected</span>
+          <span>Offline</span>
         </>
       )}
     </div>

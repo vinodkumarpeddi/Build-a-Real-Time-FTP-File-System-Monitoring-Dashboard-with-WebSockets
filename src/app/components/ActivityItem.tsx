@@ -12,25 +12,28 @@ interface ActivityItemProps {
 const changeConfig = {
   added: {
     icon: FilePlus,
-    color: 'text-success',
-    borderColor: 'border-l-success',
-    bgColor: 'bg-success/5',
+    color: 'text-emerald-400',
+    borderColor: 'border-l-emerald-500/60',
+    bgColor: 'bg-emerald-500/[0.04]',
+    hoverBg: 'hover:bg-emerald-500/[0.06]',
     label: 'Added',
     badgeClass: 'badge-added',
   },
   modified: {
     icon: FileEdit,
-    color: 'text-warning',
-    borderColor: 'border-l-warning',
-    bgColor: 'bg-warning/5',
+    color: 'text-amber-400',
+    borderColor: 'border-l-amber-500/60',
+    bgColor: 'bg-amber-500/[0.04]',
+    hoverBg: 'hover:bg-amber-500/[0.06]',
     label: 'Modified',
     badgeClass: 'badge-modified',
   },
   deleted: {
     icon: FileX,
-    color: 'text-danger',
-    borderColor: 'border-l-danger',
-    bgColor: 'bg-danger/5',
+    color: 'text-red-400',
+    borderColor: 'border-l-red-500/60',
+    bgColor: 'bg-red-500/[0.04]',
+    hoverBg: 'hover:bg-red-500/[0.06]',
     label: 'Deleted',
     badgeClass: 'badge-deleted',
   },
@@ -44,11 +47,11 @@ function ActivityItemInner({ entry }: ActivityItemProps) {
   return (
     <div
       data-test-id={testId}
-      className={`animate-slide-in mx-3 mb-2 p-3 rounded-lg border-l-2 ${config.borderColor} ${config.bgColor} hover:bg-surface-hover transition-colors duration-150`}
+      className={`animate-slide-in mx-3 mb-2 p-3 rounded-xl border-l-2 ${config.borderColor} ${config.bgColor} ${config.hoverBg} transition-all duration-200 group`}
     >
       <div className="flex items-start gap-2.5">
-        <div className={`mt-0.5 ${config.color}`}>
-          <Icon size={14} />
+        <div className={`mt-0.5 p-1 rounded-md ${config.bgColor} ${config.color}`}>
+          <Icon size={12} />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
@@ -59,10 +62,10 @@ function ActivityItemInner({ entry }: ActivityItemProps) {
               {timeAgo(entry.timestamp)}
             </span>
           </div>
-          <p className="text-xs text-zinc-300 truncate" title={entry.file.path}>
+          <p className="text-[13px] text-zinc-300 truncate font-medium" title={entry.file.path}>
             {getFileName(entry.file.path)}
           </p>
-          <p className="text-[10px] text-zinc-600 truncate mt-0.5" title={entry.file.path}>
+          <p className="text-[10px] text-zinc-600 truncate mt-0.5 font-mono" title={entry.file.path}>
             {entry.file.path}
           </p>
         </div>

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'FTP Monitor',
-  description: 'Real-time FTP file system monitoring dashboard',
+  title: 'FTP Monitor — Real-time Dashboard',
+  description: 'Real-time FTP file system monitoring dashboard with WebSockets',
 };
 
 export default function RootLayout({
@@ -13,6 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+      </head>
       <body className="min-h-screen bg-base antialiased">
         {children}
       </body>

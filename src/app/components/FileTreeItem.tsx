@@ -41,6 +41,20 @@ const iconMap = {
   file: File,
 };
 
+const iconColors: Record<string, string> = {
+  folder: 'text-cyan-400',
+  'folder-open': 'text-cyan-400',
+  code: 'text-emerald-400',
+  image: 'text-pink-400',
+  text: 'text-blue-400',
+  pdf: 'text-orange-400',
+  data: 'text-amber-400',
+  archive: 'text-violet-400',
+  video: 'text-rose-400',
+  audio: 'text-teal-400',
+  file: 'text-zinc-500',
+};
+
 function FileTreeItemInner({
   node,
   isExpanded,
@@ -63,14 +77,8 @@ function FileTreeItemInner({
     : iconMap[iconType] || iconMap.file;
 
   const iconColor = isDir
-    ? 'text-accent-light'
-    : iconType === 'code'
-    ? 'text-emerald-400'
-    : iconType === 'image'
-    ? 'text-pink-400'
-    : iconType === 'data'
-    ? 'text-amber-400'
-    : 'text-zinc-400';
+    ? iconColors['folder']
+    : iconColors[iconType] || iconColors.file;
 
   const testId = `file-tree-item-${toBase64(file.path)}`;
 
@@ -91,19 +99,19 @@ function FileTreeItemInner({
         }}
       >
         {/* Expand chevron */}
-        <span className={`transition-transform duration-200 ${isDir ? '' : 'invisible'} ${expanded ? 'rotate-90' : ''}`}>
-          <ChevronRight size={14} className="text-zinc-500" />
+        <span className={`transition-transform duration-200 flex-shrink-0 ${isDir ? '' : 'invisible'} ${expanded ? 'rotate-90' : ''}`}>
+          <ChevronRight size={13} className="text-zinc-600" />
         </span>
 
         {/* Icon */}
-        <IconComponent size={16} className={iconColor} />
+        <IconComponent size={15} className={`${iconColor} flex-shrink-0 transition-colors`} />
 
         {/* Name */}
-        <span className="flex-1 truncate">{file.name}</span>
+        <span className="flex-1 truncate text-[13px]">{file.name}</span>
 
-        {/* Size badge */}
+        {/* Size badge on hover */}
         {file.type === 'file' && (
-          <span className="text-[10px] text-zinc-600 font-mono opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-[10px] text-zinc-700 font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0">
             {formatBytes(file.size)}
           </span>
         )}
