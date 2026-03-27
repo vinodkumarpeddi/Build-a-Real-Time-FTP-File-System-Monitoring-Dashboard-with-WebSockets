@@ -1,0 +1,5 @@
+node_modules
+.next
+ftp-data
+.env
+.git
